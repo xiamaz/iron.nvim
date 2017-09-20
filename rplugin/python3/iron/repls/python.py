@@ -21,7 +21,7 @@ python = {
 ipython = {
     'command':   'ipython',
     'language':  'python',
-    'multiline': ('cpaste', '--', '\r'),
+    'multiline': ('%cpaste', '--'),
 }
 
 
