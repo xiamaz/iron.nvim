@@ -2,6 +2,14 @@
 
 Interactive Repls Over Neovim
 
+## Lua porting build status
+
+[![CircleCI](https://circleci.com/gh/hkupty/iron.nvim.svg?style=shield&circle-token=debdaf36972c979be9ab014b325aa91da3ca0c1c)]()
+
+## Support iron.nvim
+Support iron.nvim development by sending me some bitcoins at `19n1bchWPg8NLKY1By51rwv7jZRzPwYfYq`.
+Cheers!
+
 ## What is it for?
 
 Iron is a simple utility that helps you bringing repls for the current `ft`,
@@ -55,10 +63,13 @@ other combination of commands/mappings you may need to send text to the repl.
 Iron has also set conveniently a mapping for calling back the previous command:
 `cp` (remember as call previous).
 
-Both `ctr` and `cp` can be remmaped, for example to define them only for the
-python filetype:
+Both `ctr` and `cp` can be remmaped. For example, if you only work with python,
+you can use the following configuration:
 
 ```vim
+" deactivate default mappings
+let g:iron_map_defaults=0
+" define custom mappings for the python filetype
 augroup ironmapping
     autocmd!
     autocmd Filetype python nmap <buffer> <localleader>t <Plug>(iron-send-motion)
