@@ -106,6 +106,7 @@ class Iron(BaseIron):
         cmd = args[1]
 
         template = self.get_template_for_ft(ft)
+        template['command'] = cmd
 
         if not ft:
             self.call_cmd("echo 'Closing without a file type'")
