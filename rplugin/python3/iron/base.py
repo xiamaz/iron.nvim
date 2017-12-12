@@ -70,7 +70,7 @@ class BaseIron(object):
 
         #TODO Prompt user to choose for a repl or open first if Cmd!
         if cmd is not None:
-            repls = filter(lambda k: k['command'] == cmd, repls)
+            repls = list(filter(lambda k: k['command'] == cmd, repls))
         return len(repls) and repls[0] or {}
 
     # Helper fns
