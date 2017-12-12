@@ -104,9 +104,10 @@ class Iron(BaseIron):
     def iron_custom_repl(self, args, bang=False):
         ft = args[0]
         cmd = args[1]
+        custom_cmd = args[2] if len(args) > 2 else cmd
 
-        template = self.get_template_for_ft(ft)
-        template['command'] = cmd
+        template = self.get_template_for_ft(ft, cmd=cmd)
+        template['command'] = custom_cmd_cmd
 
         if not ft:
             self.call_cmd("echo 'Closing without a file type'")

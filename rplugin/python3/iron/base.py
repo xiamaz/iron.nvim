@@ -59,7 +59,7 @@ class BaseIron(object):
             self._fill_in_detect_key(available_repls)
         ), key=lambda k: k.get('priority', 0), reverse=True)
 
-    def _get_repl_template(self, ft):
+    def _get_repl_template(self, ft, cmd):
         logger.info("Trying to find a repl definition for ft {}".format(ft))
 
         repls = self._list_repl_templates(ft)
@@ -69,6 +69,8 @@ class BaseIron(object):
         ))
 
         #TODO Prompt user to choose for a repl or open first if Cmd!
+        if cmd is not None:
+            repls = filter(lambda k: k['command'] == cmd, repls)
         return len(repls) and repls[0] or {}
 
     # Helper fns
@@ -127,9 +129,9 @@ class BaseIron(object):
 
         self.call('jobsend', repl_id, data)
 
-    def get_template_for_ft(self, ft):
+    def get_template_for_ft(self, ft, cmd=None):
         logger.debug("Getting repl definition for {}".format(ft))
-        repl = self._get_repl_template(ft)
+        repl = self._get_repl_template(ft, cmd)
 
         if not repl:
             logger.debug("echo 'No repl for {}'".format(ft))
