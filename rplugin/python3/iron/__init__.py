@@ -100,6 +100,22 @@ class Iron(BaseIron):
 
         self.open_repl(template, **kwargs)
 
+    @neovim.function("IronStartCustomRepl", sync=True)
+    def iron_repl(self, args, bang=False):
+        ft = args[0]
+        cmd = args[1]
+
+        template = self.get_template_for_ft(ft)
+
+        if not ft:
+            self.call_cmd("echo 'Closing without a file type'")
+            return
+        elif not template:
+            self.call_cmd("echo 'Unable to find repl for {}'".format(ft))
+            return
+
+        self.open_repl(template, command=cmd)
+
     @neovim.function("IronSendSpecial")
     def mapping_send(self, args):
         fn = self.get_current_bindings().get(args[0])
