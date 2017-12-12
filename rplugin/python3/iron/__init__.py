@@ -101,7 +101,7 @@ class Iron(BaseIron):
         self.open_repl(template, **kwargs)
 
     @neovim.function("IronStartCustomRepl", sync=True)
-    def iron_repl(self, args, bang=False):
+    def iron_custom_repl(self, args, bang=False):
         ft = args[0]
         cmd = args[1]
 
