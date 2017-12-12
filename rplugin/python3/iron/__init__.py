@@ -107,7 +107,7 @@ class Iron(BaseIron):
         custom_cmd = args[2] if len(args) > 2 else cmd
 
         template = self.get_template_for_ft(ft, cmd=cmd)
-        template['command'] = custom_cmd_cmd
+        template['command'] = custom_cmd
 
         if not ft:
             self.call_cmd("echo 'Closing without a file type'")
@@ -116,7 +116,7 @@ class Iron(BaseIron):
             self.call_cmd("echo 'Unable to find repl for {}'".format(ft))
             return
 
-        self.open_repl(template, command=cmd)
+        self.open_repl(template, command=custom_cmd)
 
     @neovim.function("IronSendSpecial")
     def mapping_send(self, args):
